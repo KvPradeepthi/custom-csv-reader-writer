@@ -1,0 +1,10 @@
+ID,Name,Email,Description,Status
+1,Alice Johnson,alice@example.com,Senior Software Engineer,Active
+2,Bob Smith,bob@example.com,"Product Manager, specializing in ML",Active
+3,Charlie Brown,charlie@example.com,"Description with
+newline in it",Inactive
+4,Diana Prince,diana@example.com,"Expert in \"Machine Learning\"",Active
+5,Eve Wilson,eve@example.com,"Sales lead, responsible for new accounts",Active
+6,Frank Miller,frank@example.com,DevOps Engineer,Active
+7,Grace Lee,grace@example.com,"UI/UX Designer, based in NY",Inactive
+8,Henry Davis,henry@davis.com,Data Scientist,Active
