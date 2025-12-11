@@ -1,0 +1,16 @@
+{
+  "name": "erc721-nft-contract",
+  "version": "1.0.0",
+  "description": "ERC-721 compatible NFT smart contract with comprehensive tests",
+  "scripts": {
+    "test": "hardhat test",
+    "compile": "hardhat compile",
+    "clean": "hardhat clean"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^3.0.0",
+    "hardhat": "^2.18.0",
+    "chai": "^4.3.7",
+    "@openzeppelin/contracts": "^4.9.3"
+  }
+}
