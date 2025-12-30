@@ -1,3 +1,22 @@
+"""Custom Exception Classes for CSV operations."""
+
+class CSVException(Exception):
+    """Base exception for CSV operations."""
+    pass
+
+class CSVFormatError(CSVException):
+    """Raised when CSV file format is invalid."""
+    pass
+
+class CSVParseError(CSVException):
+    """Raised when parsing CSV data fails."""
+    pass
+
+class CSVWriteError(CSVException):
+    """Raised when writing CSV data fails."""
+    pass
+
+
 """Custom CSV Reader and Writer Implementation.
 
 This module provides custom CSV reader and writer classes.
