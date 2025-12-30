@@ -1,12 +1,12 @@
-FROM node:18-alpine
+FROM python:3.11-slim
 
 WORKDIR /app
 
-COPY package*.json ./
-RUN npm install
+# Copy project files
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-RUN npx hardhat compile
-
-CMD ["npx", "hardhat", "test"]
+# Run tests
+CMD ["python", "-m", "pytest", "test_csv.py", "-v"]
