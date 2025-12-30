@@ -1,8 +1,8 @@
 import csv
 import timeit
+import os
 from typing import List
 from custom_csv import CustomCsvReader, CustomCsvWriter
-
 
 def generate_synthetic_data(rows: int = 10_000, cols: int = 5) -> List[List[str]]:
     """Generate reproducible CSV-like test data."""
@@ -23,38 +23,37 @@ def generate_synthetic_data(rows: int = 10_000, cols: int = 5) -> List[List[str]
         data.append(row)
     return data
 
-
 def benchmark_custom_write():
     """Benchmark custom CSV writer."""
     data = generate_synthetic_data()
-    with open("/tmp/custom_out.csv", "w", newline="") as f:
+    out_path = os.path.join(os.getcwd(), "custom_out.csv")
+    with open(out_path, "w", newline="") as f:
         writer = CustomCsvWriter(f)
         writer.writerows(data)
-
 
 def benchmark_std_write():
     """Benchmark standard CSV writer."""
     data = generate_synthetic_data()
-    with open("/tmp/std_out.csv", "w", newline="") as f:
+    out_path = os.path.join(os.getcwd(), "std_out.csv")
+    with open(out_path, "w", newline="") as f:
         writer = csv.writer(f)
         writer.writerows(data)
 
-
 def benchmark_custom_read():
     """Benchmark custom CSV reader."""
-    with open("/tmp/custom_out.csv", "r", newline="") as f:
+    out_path = os.path.join(os.getcwd(), "custom_out.csv")
+    with open(out_path, "r", newline="") as f:
         reader = CustomCsvReader(f)
         for _ in reader:
             pass
 
-
 def benchmark_std_read():
     """Benchmark standard CSV reader."""
-    with open("/tmp/std_out.csv", "r", newline="") as f:
+    out_path = os.path.join(os.getcwd(), "std_out.csv")
+    with open(out_path, "r", newline="") as f:
         reader = csv.reader(f)
         for _ in reader:
             pass
-
 
 def run_benchmarks(repeat: int = 5):
     """Run read/write benchmarks and print results."""
@@ -74,7 +73,6 @@ def run_benchmarks(repeat: int = 5):
         "benchmark_custom_read()", globals=globals(), number=repeat
     )
     std_read = timeit.timeit("benchmark_std_read()", globals=globals(), number=repeat)
-
     print("=" * 60)
     print("BENCHMARK RESULTS")
     print("=" * 60)
@@ -86,7 +84,6 @@ def run_benchmarks(repeat: int = 5):
     print(f"Standard reader avg time: {std_read / repeat:.6f} seconds")
     print(f"Custom reader slowdown: {(custom_read / repeat) / (std_read / repeat):.2f}x")
     print("=" * 60)
-
 
 if __name__ == "__main__":
     run_benchmarks()
